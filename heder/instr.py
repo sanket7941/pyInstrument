@@ -91,13 +91,6 @@ class PSupply:
             self.PS.write(':OUTPut:STATe %d' % 0)
             print("power supply is OFF")
 
-    def test(self, volt, Dtime):
-        self.PS.SVolt(volt)
-
-        print("voltage=" + self.PS.MVolt())
-        print("Current=" + self.PS.MCurr())
-        self.PS.delay(Dtime)
-
 
 """
 Digital Multi Meter class
