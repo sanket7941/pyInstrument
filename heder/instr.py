@@ -69,27 +69,27 @@ class PSupply:
     def delay(delay_Sec):
         time.sleep(delay_Sec)
 
-    def SVolt(self, Volt):  # NOT working
+    def on(self):  # turn ON power supply
+        self.PS.write(':OUTPut:STATe %d' % 1)
+        return "power supply is ON"
+
+    def off(self):  # turn OFF power supply
+        self.PS.write(':OUTPut:STATe %d' % 0)
+        return "power supply is OFF"
+
+    def setVolt(self, Volt):  # set Voltage
         self.PS.write("VOLT " + str(Volt))
+        return "set voltage %d", Volt
 
-    def SCurr(self, Current):
+    def setCurr(self, Current):  # set current
         self.PS.write("CURR " + str(Current))
+        return " set Current %d", Current
 
-    def MVolt(self):
-        input_volt = self.PS.query("MEASure:VOLTage:DC?")
-        return input_volt
+    def measureVolt(self):  # measure voltage on Screen
+        return self.PS.query("MEASure:VOLTage:DC?")
 
-    def MCurr(self):
-        input_current = self.PS.query("MEASure:CURRent:DC?")
-        return input_current
-
-    def on_off(self, state):
-        if state == 1:  # turn ON power supply
-            self.PS.write(':OUTPut:STATe %d' % 1)
-            print("power supply is ON")
-        else:
-            self.PS.write(':OUTPut:STATe %d' % 0)
-            print("power supply is OFF")
+    def measureCurr(self):  # measure Current on Screen
+        return self.PS.query("MEASure:CURRent:DC?")
 
 
 """
