@@ -1,12 +1,13 @@
+
 import pyvisa as visa
 from heder.instr import *
 
 
-def test(volt, Dtime):
-    ps.SVolt(volt)
-    print("voltage=" + ps.MVolt())
-    print("Current=" + ps.MCurr())
-    ps.delay(Dtime)
+def test(volt, delay):
+    ps.setVolt(volt)
+    print(ps.measureVolt())
+    print(ps.measureCurr())
+    ps.delay(delay)
     return "success"
 
 
@@ -22,11 +23,14 @@ print('Power supply detected=> ' + PS.query('*IDN?'))  # chk communication is es
 
 ps = PSupply(PS)
 
-ps.SCurr(3)  # set current to 3 amp
+ps.on()
+ps.setCurr(3)  # set current to 3 amp
 
-for i in range(9, 16):  # set the range from 9 to 16 V
+for i in range(9, 17):  # set the range from 9 to 16 V
     test(i, 2)
     i += .5
     test(i, 2)
 
+ps.off()
+PS.close()
 print("process complete")
