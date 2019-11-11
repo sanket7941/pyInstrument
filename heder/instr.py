@@ -98,7 +98,5 @@ Digital Multi Meter class
 
 
 class MMeter:
-    @staticmethod
-    def test1():
-        print("inside MMeter test def")
-        return "success"
+    def __init__(self, Maddr):
+        self.PS = Maddr
