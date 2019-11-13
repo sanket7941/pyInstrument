@@ -1,0 +1,3 @@
+pyvisa
+numpy
+matplotlib
