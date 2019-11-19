@@ -31,20 +31,8 @@ PSTektronix = "USB0::1689::913::081001126668003045::0::INSTR"
 rm = visa.ResourceManager()
 rm.list_resources()
 print("RM location=> " + str(rm))
-P = rm.open_resource(PSN5744Eth)
-print('Power supply detected=> ' + P.query('*IDN?'))  # chk communication is established or NOT
+FG = rm.open_resource(FG1)
+print(' Instrument detected=> ' + FG.query('*IDN?'))  # chk communication is established or NOT
 
-S = rm.open_resource(DSO1)
-print('DSO detected=> ' + S.query('*IDN?'))  # chk communication is established or NOT
 
-scope = OScope(S)
-ps = PSupply(P)
-
-scope.autoscale()
-ps.delay(3)
-ps.SVolt(10)
-ps.SCurr(.1)
-ps.on_off(1)
-
-print("voltage = "+ps.MVolt())
 print("process complete")

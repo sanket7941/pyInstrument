@@ -9,8 +9,8 @@ DSO class
 
 
 class OScope:
-    def __init__(self, DSOAddr):  # make local var for DSO
-        self.DSO = DSOAddr
+    def __init__(self, IAddr):  # make local var for DSO
+        self.DSO = IAddr
 
     def chk(self):
         self.DSO.query('*IDN?')
@@ -18,11 +18,11 @@ class OScope:
         return print("complete")
 
     # Take screenshots of the screen
-    def screenShot(self, name):
+    def screenShot(self, name, color="1"):  # colour value 1 = white 0 for black
         # Override the default timeout as the transfer can exceed this
         self.DSO.timeout = 10000
         # configure ink saver (black background as seen on screen)
-        self.DSO.write(':HARDcopy:INKSaver 0')  # put 0 for black and 1 for white background
+        self.DSO.write(':HARDcopy:INKSaver %s', color)  # put 0 for black and 1 for white background
         # get screen data
         data = self.DSO.query_binary_values(':DISPlay:DATA? PNG, COLOR', datatype='B')
         # write it to file
@@ -57,8 +57,8 @@ Power supply class N5477 and Tecktronics
 
 
 class PSupply:
-    def __init__(self, PSAddr):
-        self.PS = PSAddr
+    def __init__(self, IAddr):
+        self.PS = IAddr
 
     def chk(self):
         self.PS.query('*IDN?')
@@ -93,10 +93,32 @@ class PSupply:
 
 
 """
+Waveform Generator class
+"""
+
+
+class WGenerator:
+    def __init__(self, Iaddr):
+        self.WG = Iaddr
+
+    '''
+    all Waveform Generation
+    '''
+
+    def sinWave(self,Freq=1000, amplitude=5, offset=0, phase=0):
+        self.WG.write("VOLT:UNIT VPP")  # Set unit to VPP
+        self.WG.write("APPL:SIN %d , %d , %d " % (Freq, amplitude, offset))  # set parameter
+        self.WG.write("PHAS %d" % phase)  # Set phase
+        self.WG.write("OUTP ON")
+        print(self.WG.query("APPLy?"))
+        return self.WG.query("APPLy?")
+
+
+"""
 Digital Multi Meter class
 """
 
 
 class MMeter:
-    def __init__(self, Maddr):
-        self.PS = Maddr
+    def __init__(self, Iaddr):
+        self.PS = Iaddr
