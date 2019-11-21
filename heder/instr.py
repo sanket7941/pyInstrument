@@ -113,6 +113,18 @@ class WGenerator:
         print(self.WG.query("APPLy?"))
         return self.WG.query("APPLy?")
 
+    def rampWave(self, Freq=1000, amplitude=5, offset=0):
+        self.WG.write("VOLT:UNIT VPP")  # Set unit to VPP
+        self.WG.write("APPL:RAMP %d ,%d , %d" % (Freq, amplitude, offset))  # set parameter
+        print(self.WG.query("APPLy?"))
+        return self.WG.query("APPLy?")
+
+    def pulseWave(Freq=1000, amplitude=5, offset=0):
+        self.WG.write("VOLT:UNIT VPP")  # Set unit to VPP
+        self.WG.write("APPL:PULS %d ,%d , %d" % (Freq, amplitude, offset))  # set parameter
+        print(self.WG.query("APPLy?"))
+        return self.WG.query("APPLy?")
+
 
 """
 Digital Multi Meter class
