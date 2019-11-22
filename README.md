@@ -7,4 +7,6 @@ control the lab instrument (Digital storage oscilloscope ,Multi-meter,Waveform g
 3) xlwt
 
 use following command to install all packages
- >install -r requirements.txt
+ ```
+  pip install -r requirements.txt
+ ```
