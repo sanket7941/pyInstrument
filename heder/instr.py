@@ -100,9 +100,10 @@ Waveform Generator class
 class WGenerator:
     def __init__(self, Iaddr):
         self.WG = Iaddr
-
+    # Waveform
     '''
     all Waveform Generation
+    square wave remaining 
     '''
 
     def sinWave(self,Freq=1000, amplitude=5, offset=0, phase=0):
@@ -119,11 +120,28 @@ class WGenerator:
         print(self.WG.query("APPLy?"))
         return self.WG.query("APPLy?")
 
-    def pulseWave(Freq=1000, amplitude=5, offset=0):
+    def pulseWave(self,Freq=1000, amplitude=5, offset=0):
         self.WG.write("VOLT:UNIT VPP")  # Set unit to VPP
         self.WG.write("APPL:PULS %d ,%d , %d" % (Freq, amplitude, offset))  # set parameter
         print(self.WG.query("APPLy?"))
         return self.WG.query("APPLy?")
+
+    # Burst
+    '''
+    need more improvements(add duty cycle,func selection)
+    '''
+
+    def burst(self,cycle=10, phase=0, period=1):
+        self.WG.write("FUNC SQU")  # Select burst function */
+        self.WG.write("BURS:STAT ON")  # Enable burst output
+        self.WG.write("BURS:MODE TRIG")  # Select the burst mode
+        self.WG.write("BURS:NCYC %d" % cycle)  # Set the cycle number
+        self.WG.write("BURS:PHAS %d" % phase)  # Set the initial phase
+        self.WG.write("BURS:INT:PER %d" % period)  # Set the period
+        self.WG.write("TRIG:SOUR IMM")  # Select internal trigger source
+        self.WG.write("OUTP ON")  # Enable the [Output] connector of CH1 at the front panel
+        return "success"
+
 
 
 """
