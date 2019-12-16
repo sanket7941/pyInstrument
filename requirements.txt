@@ -1,0 +1,4 @@
+pyvisa
+numpy
+xlwt
+matplotlib
