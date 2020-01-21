@@ -11,6 +11,6 @@ print('DSO detected=> ' + DSO.query('*IDN?'))  # chk communication is establishe
 
 scope = OScope(DSO)
 
-scope.screenShot("Img1")
+scope.screenShot("Trunk_LH_18V")
 
 print("process complete")
