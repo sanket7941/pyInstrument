@@ -1,4 +1,4 @@
-
+"code for flashing 400ms"
 import pyvisa as visa
 from heder.instr import *
 
@@ -25,11 +25,20 @@ ps = PSupply(PS)
 
 ps.on()
 ps.setCurr(3)  # set current to 3 amp
+var = 1
 
-for i in range(9, 19):  # set the range from 9 to 16 V
-    test(i, 1)
+for i in range(16, 20):  # set the range from 9 to 16 V flashing
+    test(i, .4)
+    test(0, .4)
     i += .5
-    test(i, .1)
+    test(i, .4)
+    test(0, .4)
+for i in range(19, 16, -1):  # set the range from 9 to 16 V flashing
+    test(i, .4)
+    test(0, .4)
+    i -= .5
+    test(i, .4)
+    test(0, .4)
 
 ps.off()
 PS.close()
