@@ -1,4 +1,5 @@
 pyvisa
+visa
 numpy
 xlwt
 matplotlib
