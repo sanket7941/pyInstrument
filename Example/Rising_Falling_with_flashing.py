@@ -1,7 +1,6 @@
-"code for flashing 400ms"
+" code for flashing 400ms "
 import pyvisa as visa
-from heder.instr import *
-
+from ..instrument import PSupply
 
 def test(volt, delay):
     ps.setVolt(volt)
@@ -18,8 +17,10 @@ PSTektronix = "USB0::1689::913::081001126668003045::0::INSTR"
 
 rm = visa.ResourceManager()
 rm.list_resources()
-PS = rm.open_resource(PSTektronix)   # choose the proper address for your instrument
+print(rm.list_resources()[0])
+PS = rm.open_resource(rm.list_resources()[0])   # choose the proper address for your instrument
 print('Power supply detected=> ' + PS.query('*IDN?'))  # chk communication is established or NOT
+
 
 ps = PSupply(PS)
 
@@ -42,4 +43,5 @@ for i in range(19, 16, -1):  # set the range from 9 to 16 V flashing
 
 ps.off()
 PS.close()
+
 print("process complete")

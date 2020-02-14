@@ -1,6 +1,7 @@
 
 import pyvisa as visa
-from heder.instr import PSupply
+from ..instrument import PSupply
+
 
 # instrument address
 

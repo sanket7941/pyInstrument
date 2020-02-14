@@ -1,6 +1,6 @@
 
 import pyvisa as visa
-from heder.instr import *
+from ..instrument import OScope
 
 # instrument address
 
@@ -11,6 +11,6 @@ print('DSO detected=> ' + DSO.query('*IDN?'))  # chk communication is establishe
 
 scope = OScope(DSO)
 
-scope.screenShot("Trunk_LH_18V")
+scope.screenShot("scrren Shot")
 
 print("process complete")

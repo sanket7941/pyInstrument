@@ -1,6 +1,6 @@
 import pyvisa as visa
 from xlwt import Workbook
-from heder.instr import *
+from ..instrument import *
 
 
 def test(volt, delay):
