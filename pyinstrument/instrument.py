@@ -127,6 +127,12 @@ class WGenerator:
         print(self.WG.query("APPLy?"))
         return self.WG.query("APPLy?")
 
+    def sqrWave(self, Freq=1000, amplitude=5, offset=0):
+        self.WG.write("VOLT:UNIT VPP")  # Set unit to VPP
+        self.WG.write("APPL:SQU %d ,%d , %d" % (Freq, amplitude, offset))  # set parameter
+        print(self.WG.query("APPLy?"))
+        return self.WG.query("APPLy?")
+
     # Burst
     '''
     need more improvements(add duty cycle,func selection)
