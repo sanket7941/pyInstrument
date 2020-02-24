@@ -1,6 +1,6 @@
 
 import pyvisa as visa
-from ..instrument import PSupply
+from pyinstrument import PSupply
 
 
 # instrument address

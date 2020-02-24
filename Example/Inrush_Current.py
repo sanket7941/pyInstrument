@@ -19,7 +19,7 @@ print('instrument detected=> ' + WG.query('*IDN?'))  # chk communication is esta
 wg = WGenerator(WG)
 
 wg.sqrWave(1000)
-# wg.burst(1,0,1)
-wg.sweep()
+wg.burst(1,0,5)
+
 
 print("burst mode Setup successfully :) ")

@@ -1,6 +1,6 @@
 import pyvisa as visa
 from xlwt import Workbook
-from ..instrument import *
+from pyinstrument import PSupply
 
 
 def test(volt, delay):

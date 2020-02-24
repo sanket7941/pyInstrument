@@ -1,6 +1,6 @@
 
 import pyvisa as visa
-from ..instrument import OScope
+from pyinstrument import OScope
 
 # instrument address
 

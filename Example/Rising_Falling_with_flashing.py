@@ -1,6 +1,6 @@
 " code for flashing 400ms "
 import pyvisa as visa
-from ..instrument import PSupply
+from pyinstrument import PSupply
 
 def test(volt, delay):
     ps.setVolt(volt)
