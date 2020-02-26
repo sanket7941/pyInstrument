@@ -43,6 +43,7 @@ class OScope:
         self.DSO.write(":VDIV:SCALe 2.0E+1V")  # set amplitude (vertical knob)
         self.DSO.write(":WAVeform:SOURce CHANnel1")  # select channal
 
+    # Auto scale
     def autoscale(self):
         # This is the same as pressing the [Auto Scale] key on the front panel.
         self.DSO.write("AUToscale")
@@ -148,6 +149,19 @@ class WGenerator:
         self.WG.write("TRIG:SOUR IMM")  # Select internal trigger source
         self.WG.write("OUTP ON")  # Enable the [Output] connector of CH1 at the front panel
         return "success"
+
+    # Sweep
+
+    def sweep(self, mode="LIN", start=100, stop=1000, Dtime=1):
+        self.WG.write("FUNC SIN")  # set sin Wave  Select the sweep function
+        self.WG.write("SWE:STATE ON")  # Enable frequency sweep
+        self.WG.write("SWE:SPAC %s" % mode)  # LIN=> linear mode LOG => logarithmic mode
+        self.WG.write("FREQ:STAR %d" % start)  # Set the start frequency
+        self.WG.write("FREQ:STOP %d" % stop)  # Set the stop frequency
+        self.WG.write("SWE:TIME %d" % Dtime)  # Set the sweep time
+        self.WG.write("TRIG:SOUR IMM")  # Select internal trigger source
+        self.WG.write("OUTP ON")  # Enable the [Output] connector of CH1 at the front panel
+        return "sweep ON"
 
 
 """
