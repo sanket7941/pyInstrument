@@ -1,7 +1,8 @@
 import pyvisa as visa
 
 rm = visa.ResourceManager()
-rm.list_resources()
-rm.list_resources_info()
+print("instrument id =>" + str (rm.list_resources()))
 
-print("process complete")
+Instrument = rm.open_resource(rm.list_resources()[0])
+print("instrument info => " + Instrument.query('*IDN?'))
+
