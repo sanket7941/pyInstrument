@@ -17,6 +17,7 @@ delaySec = 2        # set delay time between on and off
 ps.on()
 # set max current limit
 ps.setCurr(3)
+ps.setVolt(0)
 
 for i in range(10):
     ps.setVolt(maxVoltage)      # set max voltage

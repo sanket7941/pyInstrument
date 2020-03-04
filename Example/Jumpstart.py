@@ -11,7 +11,7 @@ PSTektronix = "USB0::1689::913::081001126668003045::0::INSTR"
 
 rm = visa.ResourceManager()
 rm.list_resources()
-PS = rm.open_resource(PSTektronix)   # choose the proper address for your instrument
+PS = rm.open_resource(rm.list_resources()[0])   # choose the proper address for your instrument
 print('Power supply detected=> ' + PS.query('*IDN?'))  # chk communication is established or NOT
 
 ps = PSupply(PS)
