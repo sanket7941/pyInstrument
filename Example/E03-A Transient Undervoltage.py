@@ -1,5 +1,8 @@
 """
-sshete requirment for VW216 E03
+E-03-A Transient undervoltage
+7.3.1 Purpose
+Switching on loads may result in transient undervoltages, depending on the state of the
+power electric system (e.g., availability of energy stores).
 
 """
 import pyvisa as visa
