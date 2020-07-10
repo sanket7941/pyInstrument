@@ -1,6 +1,13 @@
 """
+E-09 Reset behavior
 
-sshete requirment for VW216 E09
+The reset behavior of a component in its environment is recreated and tested. General
+test conditions (e.g., network, terminal, system) must be described in detail.
+An arbitrary chronological sequence of repeated switch-on/switch-off processes occurs
+during operation and must not result in undefined component behavior.
+The reset behavior is reflected in a voltage variance and in a time-based variance. Two
+different test sequences are required to simulate varying switch-off times. A component
+must always run through both sequences.
 
 """
 import pyvisa as visa
