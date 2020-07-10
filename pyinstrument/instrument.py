@@ -80,11 +80,11 @@ class PSupply:
 
     def setVolt(self, Volt):  # set Voltage
         self.PS.write("VOLT " + str(Volt))
-        return "set voltage %d", Volt
+        return ("set voltage %f "  %Volt)
 
     def setCurr(self, Current):  # set current
         self.PS.write("CURR " + str(Current))
-        return " set Current %d", Current
+        return (" set Current %f" %Current)
 
     def measureVolt(self):  # measure voltage on Screen
         return self.PS.query("MEASure:VOLTage:DC?")
