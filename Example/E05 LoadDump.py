@@ -1,6 +1,10 @@
 """
 
-sshete requirment for VW216 E03
+E-05 Load dump
+Purpose
+Dumping of an electric load, in conjunction with a battery with reduced buffering
+capacity, results in a high-energy overvoltage pulse due to generator properties. This
+test is meant to simulate this pulse.
 
 """
 import pyvisa as visa
