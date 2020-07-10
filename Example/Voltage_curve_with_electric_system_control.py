@@ -1,16 +1,10 @@
+"""
+n
 
+
+"""
 import pyvisa as visa
 from pyinstrument import PSupply
-
-
-
-def test(volt, delay):
-    ps.setVolt(volt)
-    print(ps.measureVolt())
-    print(ps.measureCurr())
-    ps.delay(delay)
-    return "success"
-
 
 # instrument address
 PSN5744USB = "USB0::2391::38151::US15J0384P::0::INSTR"
@@ -26,12 +20,23 @@ ps = PSupply(PS)
 
 ps.on()
 ps.setCurr(3)  # set current to 3 amp
+print('program started')
+ps.setVolt(0)
+ps.delay(1)
 
-for i in range(1, 3.5):  # set the range from 9 to 16 V
-    test(i, 1)
-    i += .5
-    test(i, .1)
+ps.setVolt(11.8)    # umin
+ps.delay(.4)    # tr = 400ms
+ps.setVolt(16)  # Umax 16V
+ps.delay(2)     # 2 sec
+ps.setVolt(11.8)  # tf = 400ms
+ps.delay(.4)
+ps.setVolt(0)
+ps.delay(1)
 
+
+print(ps.measureVolt())
+print(ps.measureCurr())
+ps.delay(delay)
 ps.off()
 PS.close()
 print("process complete")

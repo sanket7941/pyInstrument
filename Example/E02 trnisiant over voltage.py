@@ -1,7 +1,9 @@
+"""
+sshete requirment for VW216 E02
 
+"""
 import pyvisa as visa
 from pyinstrument import PSupply
-
 
 
 def test(volt, delay):
@@ -12,14 +14,9 @@ def test(volt, delay):
     return "success"
 
 
-# instrument address
-PSN5744USB = "USB0::2391::38151::US15J0384P::0::INSTR"
-PSN5744Eth = "TCPIP0::169.254.57.0::inst0::INSTR"
-PSTektronix = "USB0::1689::913::081001126668003045::0::INSTR"
-
 rm = visa.ResourceManager()
 rm.list_resources()
-PS = rm.open_resource(rm.list_resources()[0])   # choose the proper address for your instrument
+PS = rm.open_resource(rm.list_resources()[0])  # choose the proper address for your instrument
 print('Power supply detected=> ' + PS.query('*IDN?'))  # chk communication is established or NOT
 
 ps = PSupply(PS)
@@ -27,10 +24,18 @@ ps = PSupply(PS)
 ps.on()
 ps.setCurr(3)  # set current to 3 amp
 
-for i in range(1, 3.5):  # set the range from 9 to 16 V
-    test(i, 1)
-    i += .5
-    test(i, .1)
+ps.setVolt(0)
+ps.delay(5)  # power supply off for 5 sec
+ps.setVolt(16)  # UMIN
+ps.delay(2)  # 16V on for 2 SEC
+
+for i in range(1, 100):
+    ps.setVolt(18)
+    ps.delay(.4)  # 18 V for 400ms
+    ps.setVolt(17)
+    ps.delay(.6)  # 17 v for 600mS
+    ps.setVolt(16)
+    ps.delay(2)  # 16 V for 2 Sec
 
 ps.off()
 PS.close()

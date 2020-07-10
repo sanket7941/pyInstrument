@@ -18,22 +18,19 @@ ps.on()
 # set max current limit
 ps.setCurr(5)
 
-#print("Low beam")
-print("High Beam")
-
 ps.setVolt(9)
 ps.delay(1)
-print("Voltage ==> "+ ps.measureVolt() + "current ==>"+ ps.measureCurr() )
+print("Voltage ==> " + ps.measureVolt() + "current ==>" + ps.measureCurr())
 ps.delay(5)
 
 ps.setVolt(13.5)
 ps.delay(1)
-print("Voltage ==> "+ ps.measureVolt() + "current ==>"+ ps.measureCurr() )
+print("Voltage ==> " + ps.measureVolt() + "current ==>" + ps.measureCurr())
 ps.delay(5)
 
 ps.setVolt(16)
 ps.delay(1)
-print("Voltage ==> "+ ps.measureVolt() + "current ==>"+ ps.measureCurr() )
+print("Voltage ==> " + ps.measureVolt() + "current ==>" + ps.measureCurr())
 ps.delay(5)
 
 ps.off()

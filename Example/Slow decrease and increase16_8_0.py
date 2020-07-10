@@ -18,7 +18,7 @@ PSTektronix = "USB0::1689::913::081001126668003045::0::INSTR"
 
 rm = visa.ResourceManager()
 rm.list_resources()
-PS = rm.open_resource(PSN5744Eth)  # choose the proper address for your instrument
+PS = rm.open_resource(rm.list_resources()[0])  # choose the proper address for your instrument
 print('Power supply detected=> ' + PS.query('*IDN?'))  # chk communication is established or NOT
 
 ps = PSupply(PS)
@@ -38,7 +38,7 @@ ps.setCurr(3)  # set current to 3 amp
 
 # step 1 => Usmax(16) to Usmin(8)
 
-for i in range(1600, 700, -1):  # set the range from 9 to 16 V
+for i in range(1600, 700, -1):  # set the range from 16 to 8 V
     test(i / 100, 1.2)
     i -= 1
 sheet1.write(3, 9, 'Step 1')
@@ -51,7 +51,7 @@ print(ps.measureCurr())
 
 # step 2 =>  Usmin(8V) to 0V
 
-for i in range(800, 1, -1):  # set the range from 9 to 16 V
+for i in range(800, 1, -1):  # set the range from 8 to 0 V
     test(i / 100, 1.2)
     i -= 1
 

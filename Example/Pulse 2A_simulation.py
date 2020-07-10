@@ -1,16 +1,10 @@
+"""
+pulse 2 a simulation without accurate timing
 
+
+"""
 import pyvisa as visa
 from pyinstrument import PSupply
-
-
-
-def test(volt, delay):
-    ps.setVolt(volt)
-    print(ps.measureVolt())
-    print(ps.measureCurr())
-    ps.delay(delay)
-    return "success"
-
 
 # instrument address
 PSN5744USB = "USB0::2391::38151::US15J0384P::0::INSTR"
@@ -25,12 +19,22 @@ print('Power supply detected=> ' + PS.query('*IDN?'))  # chk communication is es
 ps = PSupply(PS)
 
 ps.on()
-ps.setCurr(3)  # set current to 3 amp
+ps.setCurr(10)  # set current to 3 amp
+print('program started')
+ps.setVolt(0)
+ps.delay(5)
+for i in range(1,50):
+    ps.setVolt(9)      # umin
+    ps.delay(5)         # tr = 20ms
+    print(ps.setVolt(20))      # Umax 16V
+    print (i )
+    ps.delay(0.02)      # 2 milli sec
+    ps.setVolt(9)      # tf = 400ms
+    ps.delay(5)
 
-for i in range(1, 3.5):  # set the range from 9 to 16 V
-    test(i, 1)
-    i += .5
-    test(i, .1)
+
+# print(ps.measureVolt())
+# print(ps.measureCurr())
 
 ps.off()
 PS.close()
