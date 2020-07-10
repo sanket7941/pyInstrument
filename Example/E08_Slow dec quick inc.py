@@ -1,3 +1,14 @@
+
+""""
+
+E-08 Slow decrease, quick increase of the supply voltage
+Purpose
+This test simulates the slow decrease of the battery voltage to 0 V and the sudden reapplication
+of the battery voltage, e.g., from a jump start source.
+
+
+""""
+
 import pyvisa as visa
 
 from pyinstrument import PSupply
