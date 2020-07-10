@@ -1,3 +1,15 @@
+""""
+E-07 Slow decrease and increase of the supply voltage
+Purpose
+The slow decrease and increase of the supply voltage is simulated as it occurs during
+the slow discharging and charging processes of the vehicle battery.
+
+""""
+
+
+
+
+
 import pyvisa as visa
 
 from pyinstrument import PSupply
