@@ -1,5 +1,8 @@
 """
-sshete requirment for VW216 E02
+E-02 Transient overvoltage
+ Purpose
+Switching off loads and engine revving (tip-in) may result in transient overvoltages in the
+electric system. These overvoltages are simulated in this test.
 
 """
 import pyvisa as visa
