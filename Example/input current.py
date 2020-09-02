@@ -17,21 +17,26 @@ delaySec = 2        # set delay time between on and off
 ps.on()
 # set max current limit
 ps.setCurr(5)
-
+print(" Project Name ")
 ps.setVolt(9)
 ps.delay(1)
 print("Voltage ==> " + ps.measureVolt() + "current ==>" + ps.measureCurr())
-ps.delay(5)
+ps.delay(1)
 
 ps.setVolt(13.5)
 ps.delay(1)
 print("Voltage ==> " + ps.measureVolt() + "current ==>" + ps.measureCurr())
-ps.delay(5)
+ps.delay(1)
 
 ps.setVolt(16)
 ps.delay(1)
 print("Voltage ==> " + ps.measureVolt() + "current ==>" + ps.measureCurr())
-ps.delay(5)
+ps.delay(1)
+
+ps.setVolt(18)
+ps.delay(1)
+print("Voltage ==> " + ps.measureVolt() + "current ==>" + ps.measureCurr())
+ps.delay(1)
 
 ps.off()
 PS.close()
